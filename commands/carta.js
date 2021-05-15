@@ -12,6 +12,10 @@ spellsOutput = card => {
     return `${card.name} (Custo: ${card.cost}) -> (${card.keywords.join('/')}) ${card.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
 }
 
+landmarkOutput = card => {
+    return `${card.name} (Custo: ${card.cost}) -> (${card.keywords.join('/')}) ${card.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
+}
+
 module.exports = (args) => {
     const cardName = args.join(' ');
 
@@ -25,6 +29,8 @@ module.exports = (args) => {
                 return unitOutput(card);
             case 'Feitiço':
                 return spellsOutput(card);
+            case 'Monumento':
+                return landmarkOutput(card);
             default:
                 return card.description.replace(/<\/?[^>]+(>|$)/g, "");
         }
