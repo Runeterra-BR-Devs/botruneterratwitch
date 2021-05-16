@@ -1,11 +1,5 @@
 # Bot Runeterra Twitch
 
-## Import card data:
-
-```
-npm run import
-```
-
 ## Configure bot:
 
 ```
@@ -24,6 +18,9 @@ npm start
 # Available commands
 
 ```
-!carta Draven
+!carta Aurelion Sol
 ```
 
+```
+!rolarcarta
+```

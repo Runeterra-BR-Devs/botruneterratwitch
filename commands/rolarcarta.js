@@ -1,15 +1,15 @@
-const jsonParser = require('../helpers/jsonLoader');
-
-const path = require('path');
-
-const dataset = jsonParser(path.resolve('./data/cards.json'));
-
 const { formatCard } = require('../helpers/formatters');
+const axios = require('axios');
 
-module.exports = (args) => {
-    const subdataset = dataset.filter(e => e.type != 'Habilidade');
+module.exports = async (args) => {
 
-    const randomIndex = Math.floor(Math.random() * subdataset.length);
+    try{
+        const response = await axios.get('http://botruneterra.com.br:1337/random');
 
-    return formatCard(subdataset[randomIndex]);
+        return formatCard(response.data);
+    } catch (e) {
+        console.error(e);
+
+        return 'Não encontrado';
+    }
 };

@@ -1,20 +1,13 @@
-const jsonParser = require('../helpers/jsonLoader');
-
-const path = require('path');
-
-const dataset = jsonParser(path.resolve('./data/cards.json'));
-
 const { formatCard } = require('../helpers/formatters')
+const axios = require('axios');
 
-module.exports = (args) => {
+module.exports = async (args) => {
     const cardName = args.join(' ');
 
     try{
-        const card = dataset.find(e => {
-            return e.name.toLowerCase() == cardName.toLowerCase();
-        });
+        const response = await axios.get('http://botruneterra.com.br:1337/cards/' + encodeURI(cardName));
 
-        return formatCard(card);
+        return formatCard(response.data);
     } catch (e) {
         console.error(e);
 

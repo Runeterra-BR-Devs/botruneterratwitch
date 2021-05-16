@@ -29,7 +29,7 @@ client.on('connected', (address, port) => {
 })
 
 
-client.on('message', (channel, user, message, self) => {
+client.on('message', async (channel, user, message, self) => {
     if(self) return;
 
     const command = message.split(' ').shift() ?? message;
@@ -41,7 +41,7 @@ client.on('message', (channel, user, message, self) => {
 
     try {
 
-        const output = require(`./commands/${command.substr(1)}`)(args);
+        const output = await require(`./commands/${command.substr(1)}`)(args);
 
         client.say(channel, output);
     } catch (e) {
