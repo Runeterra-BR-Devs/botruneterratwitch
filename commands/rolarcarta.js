@@ -7,7 +7,9 @@ const dataset = jsonParser(path.resolve('./data/cards.json'));
 const { formatCard } = require('../helpers/formatters');
 
 module.exports = (args) => {
-    const randomIndex = Math.floor(Math.random() * dataset.length);
+    const subdataset = dataset.filter(e => e.type != 'Habilidade');
 
-    return formatCard(dataset[randomIndex]);
+    const randomIndex = Math.floor(Math.random() * subdataset.length);
+
+    return formatCard(subdataset[randomIndex]);
 };
