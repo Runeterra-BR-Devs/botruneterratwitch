@@ -4,17 +4,7 @@ const path = require('path');
 
 const dataset = jsonParser(path.resolve('./data/cards.json'));
 
-unitOutput = card => {
-    return `${card.name} (Custo: ${card.cost}) -> ${card.attack}/${card.health} (${card.keywords.join('/')}) ${card.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
-}
-
-spellsOutput = card => {
-    return `${card.name} (Custo: ${card.cost}) -> (${card.keywords.join('/')}) ${card.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
-}
-
-landmarkOutput = card => {
-    return `${card.name} (Custo: ${card.cost}) -> (${card.keywords.join('/')}) ${card.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
-}
+const { formatCard } = require('../helpers/formatters')
 
 module.exports = (args) => {
     const cardName = args.join(' ');
@@ -24,16 +14,7 @@ module.exports = (args) => {
             return e.name.toLowerCase() == cardName.toLowerCase();
         });
 
-        switch(card.type) {
-            case 'Unidade':
-                return unitOutput(card);
-            case 'Feitiço':
-                return spellsOutput(card);
-            case 'Monumento':
-                return landmarkOutput(card);
-            default:
-                return card.description.replace(/<\/?[^>]+(>|$)/g, "");
-        }
+        return formatCard(card);
     } catch (e) {
         console.error(e);
 
