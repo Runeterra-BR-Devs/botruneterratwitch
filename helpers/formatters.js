@@ -1,5 +1,5 @@
 unitOutput = card => {
-    return `${card.name} (Custo: ${card.cost}) -> ${card.attack}/${card.health} (${card.keywords.join('/')}) ${card.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
+    return `${card.name} (Custo: ${card.cost}) -> ${card.attack}/${card.health} ${card.keywords.length >=1 ? '(' + card.keywords.join('/') + ')' : ''} ${card.description.replace(/<\/?[^>]+(>|$)/g, "")}`;
 }
 
 spellsOutput = card => {
