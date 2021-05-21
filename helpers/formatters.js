@@ -23,9 +23,14 @@ formatCard = card => {
     }
 }
 
+lvlUpOutput = card => {
+    return card.name + ' -> ' + card.levelUp;
+}
+
 module.exports = {
     unitOutput: unitOutput,
     spellsOutput: spellsOutput,
     landmarkOutput: landmarkOutput,
-    formatCard: formatCard
+    formatCard: formatCard,
+    lvlUpOutput: lvlUpOutput
 };
